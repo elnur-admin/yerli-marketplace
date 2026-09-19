@@ -13,7 +13,9 @@ Yerli Azərbaycanın mağazalarını, məhsullarını və sifarişlərini bir pl
 - [x] GitHub repo yaradıldı və layihə ora göndərildi.
 - [x] GitHub Pages ilə pulsuz canlı sayt yayımlandı.
 - [x] Mobil və desktop görünüşü, məhsul kataloqu, axtarış, kateqoriya, filtr və sıralama hazırdır.
+- [x] Əsas səhifə alıcı yönümlüdür: mağazalar, məhsullar, qiymətlər və mağaza üzrə kataloq filtri birbaşa görünür.
 - [x] Məhsul detalı, səbət, checkout və mağaza təqdimetmə axınları hazırdır.
+- [x] Mağaza açmaq üçün başlıqda ayrıca giriş nöqtəsi var; daxil olmuş mağaza sahibi öz profilini və məhsullarını kabinetdə görür.
 - [x] Kataloqdakı demo məhsullar real foto URL-ləri ilə göstərilir; ikon kimi görünən məhsul şəkilləri düzəldilib.
 - [x] Render Free üzərində Node.js backend yayımlandı.
 - [x] GitHub Pages frontend-i Render API-yə qoşuldu.
