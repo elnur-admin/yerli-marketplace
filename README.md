@@ -1,28 +1,45 @@
-# Yerli marketplace MVP
+# Yerli marketplace
 
-Yerli Azərbaycandakı mağazaların məhsullarını bir kataloqda təqdim edən, mobil-first marketplace prototipidir. Bu MVP-də mağaza sahibi profil yarada, məhsul şəklini AI Studio axınından keçirə, məhsul məlumatlarını daxil edib yayımlaya bilər. Alıcılar axtarış və birgə filtrlərlə məhsul tapır, detallara baxır və səbətə əlavə edir.
+Yerli Azərbaycanın mağazalarını, məhsullarını və sifarişlərini bir server kataloqunda birləşdirən mobil-first marketplace tətbiqidir.
+
+## Hazır olan axınlar
+
+- Email və ya SMS OTP ilə server tərəfli hesab və 30 günlük sessiya.
+- Mağaza profili və məhsullar JSON məlumat bazasında serverdə saxlanılır.
+- Məhsul şəkilləri server storage-a yüklənir. `REMOVEBG_API_KEY` veriləndə remove.bg ilə real background removal işləyir.
+- Sifariş checkout forması ilə serverə yazılır; şəhərə görə kuryer tarifi və çatdırılma müddəti hesablanır.
+- Kart ödənişi üçün `STRIPE_SECRET_KEY` qoşulduqda Stripe Checkout sessiyası yaradılır. Açarsız halda qapıda nağd ödəniş aktivdir.
+- Nümunə kataloq şəkilləri yerli SVG asset-ləridir; uzaq Unsplash URL-ləri istifadə edilmir.
 
 ## Lokal işə salma
 
-Layihə statik fayllardan ibarətdir və əlavə paket tələb etmir.
+Node.js 18+ tələb olunur.
 
-```text
+```powershell
 node work/server.mjs
 ```
 
-Sonra `http://127.0.0.1:4173` ünvanını aç.
+Sonra `http://127.0.0.1:4173` ünvanını aç. Server ilk açılışda `data/db.json` və `data/uploads/` qovluqlarını yaradır.
 
-## Məlumat və mühit dəyişənləri
+Demo mühitində OTP provider açarı olmadan kod API cavabında `devCode` kimi qaytarılır və ekranda göstərilir. Production-da real email üçün `RESEND_API_KEY` və `RESEND_FROM`, SMS üçün `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM` dəyişənlərini ver.
 
-MVP brauzer `localStorage`-ından istifadə edir. Server, verilənlər bazası, giriş sistemi və ayrıca mühit dəyişəni tələb olunmur. `yerli_products`, `yerli_cart`, `yerli_store` və `yerli_favorites` açarları ilə saxlanan məlumatlar yalnız həmin brauzerdə qalır.
+## Production dəyişənləri
 
-## AI Studio
+```text
+NODE_ENV=production
+PUBLIC_URL=https://api.example.com
+ALLOW_ORIGIN=https://elnur-admin.github.io
+RESEND_API_KEY=...
+RESEND_FROM=Yerli <noreply@example.com>
+TWILIO_ACCOUNT_SID=...
+TWILIO_AUTH_TOKEN=...
+TWILIO_FROM=+994...
+REMOVEBG_API_KEY=...
+STRIPE_SECRET_KEY=...
+```
 
-Hazırkı demo brauzerdə işləyən şəkil emalı pipeline-ıdır: orijinal fayl ayrıca saxlanılır, nəticə isə neytral fonda yerləşdirilmiş ikinci şəkil kimi yaradılır. Real istifadədə bu modulun `makeStudioImage` funksiyası background-removal API-si ilə əvəzlənə bilər. Arxa fonun silinməsi üçün remove.bg kimi ixtisaslaşmış servis və ya OpenAI Images API image edit axını seçilə bilər; remove.bg məhsul obyektinin maskalanması üçün sadə API, OpenAI isə daha çevik generativ düzəliş imkanı verir.
+GitHub Pages yalnız statik interfeysi yayımlayır. Frontend-i ayrıca API serverinə bağlamaq üçün səhifəni açmazdan əvvəl `window.YERLI_API_BASE = "https://api.example.com"` dəyərini verən kiçik config script-i əlavə et və ya eyni domen altında reverse proxy istifadə et. Lokal serverdə bu dəyər boş saxlanılır və `/api/*` birbaşa işləyir.
 
-## Bilinən məhdudiyyətlər
+## API xəritəsi
 
-- Giriş, email/SMS OTP və mağaza məlumatları hələ serverdə deyil; demo lokal brauzer yaddaşındadır.
-- Sifariş göndərilməsi MVP-də mağazaya telefon əlaqəsi üçün sadə forma kimi modelləşdirilib; ödəniş və çatdırılma inteqrasiyası əlavə edilməlidir.
-- Məhsul şəkilləri hazırda brauzerdə emal olunur və real background-removal servisi ilə əvəzlənməlidir.
-- Şəkil kataloqunda nümunə məhsullar Unsplash şəkillərindən istifadə edir; istehsalda mağazaların öz storage/CDN-i qoşulmalıdır.
+`GET /api/products`, `POST /api/auth/request-otp`, `POST /api/auth/verify-otp`, `GET /api/auth/me`, `POST /api/stores`, `POST /api/media/process`, `POST /api/products`, `POST /api/shipping/quote`, `POST /api/orders` və `GET /api/orders` endpoint-ləri tətbiqin əsas axınlarını təmin edir.

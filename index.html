@@ -26,6 +26,7 @@
         </nav>
         <div class="top-actions">
           <button class="icon-btn" id="open-search" aria-label="Axtarışı aç" title="Axtarış"><span>⌕</span></button>
+          <button class="auth-btn" id="open-auth">Daxil ol</button>
           <button class="seller-btn" id="open-seller"><span>＋</span> Mağaza aç</button>
           <button class="cart-btn" id="open-cart" aria-label="Səbət"><span class="cart-icon">▱</span><span>Səbət</span><b id="cart-count">0</b></button>
           <button class="menu-btn" id="open-mobile-menu" aria-label="Menyunu aç">☰</button>
@@ -47,8 +48,8 @@
           </div>
           <div class="hero-art" aria-label="Seçilmiş məhsullar">
             <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
-            <div class="hero-card card-back"><img src="https://images.unsplash.com/photo-1467043237213-65f2da53396f?auto=format&fit=crop&w=900&q=85" alt="Ağ köynək və qəhvəyi çəkmələr" /></div>
-            <div class="hero-card card-front"><img src="https://images.unsplash.com/photo-1708523842501-1619478cea1f?auto=format&fit=crop&w=900&q=85" alt="Denim geyim dəsti" /><div class="hero-card-label"><span>Həftənin seçimi</span><strong>Denim edit</strong></div></div>
+            <div class="hero-card card-back"><img src="/assets/hero-fashion.svg" alt="Yerli moda seçimi" /></div>
+            <div class="hero-card card-front"><img src="/assets/hero-denim.svg" alt="Denim geyim dəsti" /><div class="hero-card-label"><span>Həftənin seçimi</span><strong>Denim edit</strong></div></div>
             <div class="floating-note"><span class="note-icon">✦</span><div><b>AI Studio</b><small>Şəkli peşəkar göstər</small></div></div>
           </div>
         </section>
@@ -93,6 +94,8 @@
     <div class="modal-backdrop" id="modal-backdrop" hidden></div>
     <section class="modal product-modal" id="product-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="product-detail"></div></section>
     <aside class="drawer cart-drawer" id="cart-drawer" aria-label="Səbət" hidden><div class="drawer-head"><div><span class="eyebrow">Səbətin</span><h2>Seçdiklərin</h2></div><button class="modal-close" data-close-drawer>×</button></div><div class="cart-items" id="cart-items"></div><div class="cart-footer" id="cart-footer"></div></aside>
+    <section class="modal auth-modal" id="auth-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="auth-content"></div></section>
+    <section class="modal checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="checkout-content"></div></section>
     <section class="modal seller-modal" id="seller-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div class="seller-head"><div class="seller-step active" data-step-label="1"><b>1</b><span>Mağaza</span></div><div class="step-line"></div><div class="seller-step" data-step-label="2"><b>2</b><span>AI Studio</span></div><div class="step-line"></div><div class="seller-step" data-step-label="3"><b>3</b><span>Məhsul</span></div></div><div class="seller-content" id="seller-content"></div></section>
     <div class="toast" id="toast" role="status"></div>
     <script src="/app.js"></script>
