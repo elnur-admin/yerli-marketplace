@@ -1,8 +1,12 @@
 const API_BASE = window.YERLI_API_BASE || "";
 const cities = ["Bakı", "Gəncə", "Sumqayıt", "Şəki", "Lənkəran", "Naxçıvan", "Quba", "Mingəçevir"];
 const imageUrls = {
-  denim: "assets/product-denim.svg", shirt: "assets/product-shirt.svg", sneakers: "assets/product-shoes.svg",
-  bag: "assets/product-bag.svg", watch: "assets/product-watch.svg", home: "assets/product-home.svg"
+  denim: "https://images.unsplash.com/photo-1708523842501-1619478cea1f?auto=format&fit=crop&w=900&q=85",
+  shirt: "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=900&q=85",
+  sneakers: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85",
+  bag: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=85",
+  watch: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85",
+  home: "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=900&q=85"
 };
 const seedProducts = [
   { id: "p1", title: "Klassik denim gödəkçə", store: "NOVA Studio", category: "Geyim", subtype: "Gödəkçə", material: "Denim", colors: ["Mavi"], sizes: ["S", "M", "L", "XL"], price: 89, stock: 8, city: "Bakı", image: imageUrls.denim, badge: "Seçimimiz", description: "Yumşaq denim parçadan hazırlanmış, hər mövsümə uyğun klassik gödəkçə." },

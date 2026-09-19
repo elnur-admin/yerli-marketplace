@@ -9,7 +9,7 @@ Yerli Azərbaycanın mağazalarını, məhsullarını və sifarişlərini bir se
 - Məhsul şəkilləri server storage-a yüklənir. `REMOVEBG_API_KEY` veriləndə remove.bg ilə real background removal işləyir.
 - Sifariş checkout forması ilə serverə yazılır; şəhərə görə kuryer tarifi və çatdırılma müddəti hesablanır.
 - Kart ödənişi üçün `STRIPE_SECRET_KEY` qoşulduqda Stripe Checkout sessiyası yaradılır. Açarsız halda qapıda nağd ödəniş aktivdir.
-- Nümunə kataloq şəkilləri yerli SVG asset-ləridir; uzaq Unsplash URL-ləri istifadə edilmir.
+- Demo kataloq sayt görünüşü ilə eyni real məhsul fotolarını göstərir; mağazaların yeni şəkilləri server storage-a yüklənir.
 
 ## Lokal işə salma
 
