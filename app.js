@@ -1,8 +1,8 @@
 const API_BASE = window.YERLI_API_BASE || "";
 const cities = ["Bakı", "Gəncə", "Sumqayıt", "Şəki", "Lənkəran", "Naxçıvan", "Quba", "Mingəçevir"];
 const imageUrls = {
-  denim: "/assets/product-denim.svg", shirt: "/assets/product-shirt.svg", sneakers: "/assets/product-shoes.svg",
-  bag: "/assets/product-bag.svg", watch: "/assets/product-watch.svg", home: "/assets/product-home.svg"
+  denim: "assets/product-denim.svg", shirt: "assets/product-shirt.svg", sneakers: "assets/product-shoes.svg",
+  bag: "assets/product-bag.svg", watch: "assets/product-watch.svg", home: "assets/product-home.svg"
 };
 const seedProducts = [
   { id: "p1", title: "Klassik denim gödəkçə", store: "NOVA Studio", category: "Geyim", subtype: "Gödəkçə", material: "Denim", colors: ["Mavi"], sizes: ["S", "M", "L", "XL"], price: 89, stock: 8, city: "Bakı", image: imageUrls.denim, badge: "Seçimimiz", description: "Yumşaq denim parçadan hazırlanmış, hər mövsümə uyğun klassik gödəkçə." },
@@ -80,3 +80,4 @@ function bindEvents() {
 
 async function boot() { updateCartCount(); updateAuthButton(); bindEvents(); await loadSession(); await loadProducts(); const params = new URLSearchParams(location.search); if (params.get("status") === "success") showToast("Kart ödənişi tamamlandı"); }
 boot();
+
