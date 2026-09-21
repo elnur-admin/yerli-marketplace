@@ -8,21 +8,21 @@ Yerli Azərbaycan mağazaları üçün mobil uyğun alış-veriş platformasıd�
 - Hazırkı backend: <https://yerli-api.onrender.com/api/health>
 - GitHub repo: <https://github.com/elnur-admin/yerli-marketplace>
 
-Canlı xidmət köhnə deploydadır. Bu qovluqdakı yeni backend deploy edildikdən sonra həmin ünvanlarda işləyəcək.
+Frontend GitHub Pages-də, backend Render Free-də işləyir. Render Free 15 dəqiqə fəaliyyətsizlikdən sonra yatdığından ilk sorğu gec açıla bilər; lokal disk qalıcı deyil.
 
 ## Hazır olanlar
 
 - Alıcı kataloqu, axtarış, filtr, məhsul detalı, səbət və mobil görünüş.
-- Mağaza açma, mağaza kabineti və məhsul əlavəetmə axını.
+- Mağaza açma, məhsul əlavəetmə/redaktə/stok idarəsi və satış göstəriciləri olan mağaza kabineti.
 - SQLite və `DATABASE_URL` veriləndə Postgres ilə işləyən məlumat bazası.
 - Təhlükəsiz OTP: 5 dəqiqə vaxt, 5 cəhd limiti, yenidən göndərmə fasiləsi və sorğu limiti.
 - Serverdə hesablanan qiymət və çatdırılma, stokun transaksiyada azalması, ləğvdə bir dəfə bərpası.
 - İdempotent sifariş yaratma: təkrar sorğu eyni sifarişə bağlanır.
 - Alıcı, mağaza sahibi və admin üçün server icazələri.
-- Mağaza/məhsul moderasiyası; yalnız təsdiqlənənlər alıcı kataloqunda görünür.
+- Admin paneli ilə mağaza/məhsul təsdiqi və rəddi; yalnız təsdiqlənənlər alıcı kataloqunda görünür.
 - Şəkil yükləməsi üçün ölçü, format və məzmun yoxlaması; şəkil təhlükəsiz WEBP formatına çevrilir.
 - Hər məhsul üçün 1–8 orijinal və emal olunmuş şəkil ayrıca saxlanılır; məhsul detalında şəkillər arasında keçid var.
-- Kateqoriya ağacı, satıcının yalnız öz məhsullarını görməsi və stokunu yeniləməsi üçün API hazırdır.
+- Privacy, istifadə şərtləri, çatdırılma və qaytarma üçün ilkin modal mətnlər.
 - Stripe Checkout və imzalı webhook üçün hazır axın. Konfiqurasiya yoxdursa kart sifarişi yaranmır.
 
 ## Qovluqlar
@@ -89,12 +89,14 @@ POST  /api/media/process
 POST  /api/products
 GET   /api/seller/products
 PATCH /api/seller/products/:id
+GET   /api/seller/orders
 POST  /api/orders/quote
 POST  /api/orders
 GET   /api/orders
 GET   /api/orders/:id
 PATCH /api/orders/:id
 GET   /api/admin/overview
+GET   /api/admin/pending
 PATCH /api/admin/stores/:id
 PATCH /api/admin/products/:id
 POST  /api/stripe/webhook

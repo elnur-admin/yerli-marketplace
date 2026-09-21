@@ -32,6 +32,7 @@
 .seller-product-row strong{font-size:12px}
 .seller-product-row small{font-size:11px;color:var(--muted);margin-top:3px}
 .seller-product-row>span{font-size:11px;color:var(--muted);white-space:nowrap}
+.footer-links button{background:transparent;color:inherit;padding:0;font-size:12px}.status-pill{display:inline-block;border-radius:999px;padding:3px 8px;background:#f1f2f6;color:var(--muted);font-size:10px;font-weight:800}.status-pill.active{background:#e3f7eb;color:#267658}.status-pill.pending{background:#fff2d9;color:#a16207}.status-pill.rejected,.status-pill.cancelled{background:#ffe9e6;color:#b43c2d}.seller-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}.seller-metrics div{background:var(--paper);border-radius:10px;padding:12px}.seller-metrics b,.seller-metrics small{display:block}.seller-metrics small{font-size:10px;color:var(--muted);margin-top:2px}.seller-product-editor{display:grid;grid-template-columns:minmax(0,1fr) 75px 65px 62px;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}.seller-product-editor input{height:34px;width:100%;border:1px solid var(--line);border-radius:7px;padding:0 7px;font-size:12px}.seller-product-editor button,.admin-actions button{height:34px;border-radius:7px;background:var(--ink);color:#fff;font-size:11px;font-weight:700}.seller-order{padding:10px 0;border-bottom:1px solid var(--line);font-size:12px}.seller-order small{display:block;color:var(--muted);margin-top:3px}.admin-row{padding:12px 0;border-bottom:1px solid var(--line)}.admin-row strong,.admin-row small{display:block}.admin-row small{color:var(--muted);font-size:12px;margin:3px 0 8px}.admin-actions{display:flex;gap:7px}.admin-actions button:last-child{background:#fff0ed;color:#b43c2d}
 .seller-empty{background:var(--paper);border-radius:10px;color:var(--muted);padding:20px;text-align:center;font-size:12px}
 @media(max-width:800px){
   .store-strip{padding:25px}
@@ -39,6 +40,7 @@
   .store-section-head .outline-btn{margin:15px 0 0}
   .stores-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .seller-dashboard-modal{padding:23px}
+  .seller-product-editor{grid-template-columns:minmax(0,1fr) 64px 55px;gap:6px}.seller-product-editor button{grid-column:1/-1}.seller-metrics{gap:6px}.seller-metrics div{padding:9px}
 }
 @media(max-width:470px){
   .stores-grid{grid-template-columns:1fr}

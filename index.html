@@ -84,7 +84,7 @@
         <section class="store-strip" id="stores"><div class="store-section-head"><div><span class="eyebrow">Mağazalar</span><h2>Mağazaları və vitrinləri kəşf et</h2><p>Mağazanın səhifəsinə bax, məhsulları və qiymətləri müqayisə et.</p></div><button class="outline-btn" id="browse-stores">Hamısını göstər <span>↓</span></button></div><div class="stores-grid" id="stores-grid"></div></section>
       </main>
 
-      <footer><div class="brand footer-brand"><span class="brand-mark">y</span><span>yerli</span></div><span>Azərbaycandakı mağazalar, bir yerdə.</span><div class="footer-links"><a href="#catalog">Məhsullar</a><a href="#stores">Mağazalar</a><a href="#">Dəstək</a></div></footer>
+      <footer><div class="brand footer-brand"><span class="brand-mark">y</span><span>yerli</span></div><span>Azərbaycandakı mağazalar, bir yerdə.</span><div class="footer-links"><a href="#catalog">Məhsullar</a><a href="#stores">Mağazalar</a><button data-legal="privacy">Məxfilik</button><button data-legal="terms">Şərtlər</button><button data-legal="delivery">Çatdırılma və qaytarma</button></div></footer>
     </div>
 
     <div class="modal-backdrop" id="modal-backdrop" hidden></div>
@@ -93,6 +93,8 @@
     <section class="modal auth-modal" id="auth-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="auth-content"></div></section>
     <section class="modal checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="checkout-content"></div></section>
     <section class="modal seller-dashboard-modal" id="seller-dashboard-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="seller-dashboard"></div></section>
+    <section class="modal auth-modal" id="admin-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="admin-content"></div></section>
+    <section class="modal auth-modal" id="legal-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="legal-content"></div></section>
     <section class="modal seller-modal" id="seller-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div class="seller-head"><div class="seller-step active" data-step-label="1"><b>1</b><span>Mağaza</span></div><div class="step-line"></div><div class="seller-step" data-step-label="2"><b>2</b><span>AI Studio</span></div><div class="step-line"></div><div class="seller-step" data-step-label="3"><b>3</b><span>Məhsul</span></div></div><div class="seller-content" id="seller-content"></div></section>
     <div class="toast" id="toast" role="status"></div>
   <script>window.YERLI_API_BASE = location.hostname === "elnur-admin.github.io" ? "https://yerli-api.onrender.com" : "";</script>
