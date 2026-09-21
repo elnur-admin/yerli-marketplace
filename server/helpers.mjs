@@ -1,0 +1,18 @@
+import crypto from 'node:crypto';
+export class ApiError extends Error { constructor(status, message, code) { super(message); this.status = status; this.code = code; } }
+export const fail = (status, message, code) => { throw new ApiError(status, message, code); };
+export const now = () => new Date().toISOString();
+export const uid = prefix => `${prefix}_${crypto.randomUUID()}`;
+export const hash = value => crypto.createHash('sha256').update(String(value)).digest('hex');
+export const json = (value, fallback = {}) => { try { return JSON.parse(value); } catch { return fallback; } };
+export function text(value, name, { min = 0, max = 200 } = {}) { if (value == null) value = ''; if (typeof value !== 'string') fail(400, `${name} düzgün deyil`); const result = value.trim(); if (result.length < min || result.length > max || /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(result)) fail(400, `${name}: ${min}–${max} simvol tələb olunur`); return result; }
+export function integer(value, name, min = 0, max = 1000000) { if (!Number.isSafeInteger(value) || value < min || value > max) fail(400, `${name} ${min}–${max} aralığında tam ədəd olmalıdır`); return value; }
+export function money(value) { const source = String(value ?? ''); if (!/^\d{1,7}(?:\.\d{1,2})?$/.test(source)) fail(400, 'Qiymət müsbət olmalı və ən çox 2 onluq rəqəmdən ibarət olmalıdır'); const [whole, fraction = ''] = source.split('.'); return integer(Number(whole) * 100 + Number(fraction.padEnd(2, '0')), 'Qiymət', 1, 100000000); }
+export function normalizeIdentifier(value) { const raw = text(value, 'Email və ya telefon', { min: 5, max: 254 }); if (raw.includes('@')) { const email = raw.toLowerCase(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) fail(400, 'Email ünvanı düzgün deyil'); return { value: email, type: 'email' }; } return { value: normalizePhone(raw), type: 'sms' }; }
+export function normalizePhone(value) { let p = text(value, 'Telefon', { min: 7, max: 30 }).replace(/[\s()-]/g, ''); if (/^0\d{9}$/.test(p)) p = `+994${p.slice(1)}`; if (/^994\d{9}$/.test(p)) p = `+${p}`; if (!/^\+994\d{9}$/.test(p)) fail(400, 'Azərbaycan nömrəsi yaz: +994 XX XXX XX XX'); return p; }
+export function stringList(value, name, max = 30) { if (!Array.isArray(value) || value.length > max) fail(400, `${name} siyahısı düzgün deyil`); return [...new Set(value.map(item => text(item, name, { min: 1, max: 60 })))]; }
+export function publicUser(row) { return { id: row.id, identifier: row.identifier, identifierType: row.identifier_type, role: row.role, status: row.status, ...json(row.profile), createdAt: row.created_at }; }
+export function publicStore(row, privateView = false) { if (!row) return null; return { id: row.id, name: row.name, city: row.city, description: row.description, status: row.status, createdAt: row.created_at, ...(privateView ? { ownerId: row.owner_id, phone: row.phone } : {}) }; }
+export function productView(row) { return { ...json(row.details), id: row.id, storeId: row.store_id, store: row.store_name, city: row.store_city, title: row.title, category: row.category, priceMinor: Number(row.price_minor), price: Number(row.price_minor) / 100, stock: row.stock, status: row.status, createdAt: row.created_at }; }
+export const productSelect = 'SELECT p.*, s.name AS store_name, s.city AS store_city, s.status AS store_status FROM products p JOIN stores s ON s.id=p.store_id';
+export function stableStringify(value) { if (Array.isArray(value)) return `[${value.map(stableStringify).join(',')}]`; if (value && typeof value === 'object') return `{${Object.keys(value).sort().map(k => `${JSON.stringify(k)}:${stableStringify(value[k])}`).join(',')}}`; return JSON.stringify(value); }
