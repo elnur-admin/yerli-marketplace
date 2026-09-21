@@ -95,7 +95,7 @@
     <section class="modal seller-dashboard-modal" id="seller-dashboard-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="seller-dashboard"></div></section>
     <section class="modal seller-modal" id="seller-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div class="seller-head"><div class="seller-step active" data-step-label="1"><b>1</b><span>Mağaza</span></div><div class="step-line"></div><div class="seller-step" data-step-label="2"><b>2</b><span>AI Studio</span></div><div class="step-line"></div><div class="seller-step" data-step-label="3"><b>3</b><span>Məhsul</span></div></div><div class="seller-content" id="seller-content"></div></section>
     <div class="toast" id="toast" role="status"></div>
-  <script>window.YERLI_API_BASE = "https://yerli-api.onrender.com";</script>
+  <script>window.YERLI_API_BASE = location.hostname === "elnur-admin.github.io" ? "https://yerli-api.onrender.com" : "";</script>
   <script src="app.js?v=7"></script>
   </body>
 </html>

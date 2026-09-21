@@ -1,3 +1,17 @@
 .git2/
 .sites-runtime/
 test-write.txt
+node_modules/
+.pnpm-store/
+.env
+.env.*
+!.env.example
+data/
+work/preview-data/
+work/backups/
+work/reports/
+*.log
+*.sqlite*
+*.db
+*.tar.gz
+outputs/
