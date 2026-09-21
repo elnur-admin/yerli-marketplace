@@ -32,6 +32,20 @@ const seeds = [
   ['Denim Co', 'Bakı', 'Qara straight jeans', 'Geyim', 7800, 9, { subtype: 'Jeans', material: 'Denim', colors: ['Qara'], sizes: ['28', '30', '32', '34'], image: 'https://images.unsplash.com/photo-1708523842501-1619478cea1f?auto=format&fit=crop&w=900&q=85', badge: 'Trend', description: 'Gündəlik üslub üçün rahat kəsim, tünd qara denim.' }],
 ];
 
+const demoImages = [
+  'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1584917865442-0c8b3f0e95dd?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=85',
+];
+const demoCatalog = [
+  ['Zarka Demo', 'Bakı', [['Ağ gündəlik sneaker','Ayaqqabı',89,10,3],['Qara şəhər loaferi','Ayaqqabı',119,5,4],['Rəngli canvas sneaker','Ayaqqabı',75,11,3],['Linen rahat köynək','Geyim',45,12,0],['Saten köynək','Geyim',55,11,1],['Düz kəsim şalvar','Geyim',65,7,2],['Şəhər kəsimli şalvar','Geyim',59,9,1],['Yüngül bomber kurtka','Geyim',99,5,1],['Denim kurtka','Geyim',109,6,0],['Oversize jaket','Geyim',119,6,2]]],
+];
+
 function isAllowedOrigin(origin) { return !origin || !allowedOrigins.length || allowedOrigins.includes(origin); }
 function baseHeaders(req, extra = {}) {
   const origin = req.headers.origin;
@@ -67,6 +81,17 @@ async function seedDatabase(db) {
 async function seedCategories(db) {
   const names = ['Geyim', 'Ayaqqabı', 'Çanta', 'Aksesuar', 'Ev & həyat', 'Gözəllik'];
   for (const [position, name] of names.entries()) await db.run('INSERT INTO categories(id,name,position,active) VALUES(?,?,?,1) ON CONFLICT(name) DO NOTHING', [`category_${hash(name).slice(0, 16)}`, name, position]);
+}
+
+async function seedDemoCatalog(db) {
+  await db.transaction(async tx => {
+    for (const [storeName, city, items] of demoCatalog) {
+      const storeId = `demo_store_${hash(storeName).slice(0, 18)}`; const ownerId = `demo_owner_${hash(storeName).slice(0, 18)}`; const at = now();
+      await tx.run('INSERT INTO users(id,identifier,identifier_type,role,status,profile,created_at) VALUES(?,?,?,?,?,?,?) ON CONFLICT(identifier) DO NOTHING', [ownerId, `${hash(storeName).slice(0, 18)}@demo.yerli.local`, 'email', 'buyer', 'active', '{}', at]);
+      await tx.run('INSERT INTO stores(id,owner_id,name,city,phone,description,status,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO NOTHING', [storeId, ownerId, storeName, city, '+994000000000', 'Demo mağaza: məhsul, qiymət və stok məlumatları yalnız sınaq üçündür.', 'active', at, at]);
+      for (const [title, category, price, stock, imageIndex] of items) { const id = `demo_product_${hash(`${storeName}:${title}`).slice(0, 22)}`; const details = { subtype: category, material: 'Demo material', colors: ['Bej', 'Qara'], sizes: category === 'Ayaqqabı' ? ['38', '39', '40'] : ['S', 'M', 'L'], image: demoImages[imageIndex], badge: 'Demo', description: `${storeName} üçün nümayiş məhsulu. Satışa və real sifarişə aid deyil.` }; await tx.run('INSERT INTO products(id,store_id,title,category,price_minor,stock,status,details,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO NOTHING', [id, storeId, title, category, price * 100, stock, 'active', JSON.stringify(details), at, at]); }
+    }
+  });
 }
 
 async function importLegacyJson(db) {
@@ -235,7 +260,7 @@ async function serveFile(req, res, pathname) { if (pathname.startsWith('/media/'
 }
 
 fs.mkdirSync(uploadRoot, { recursive: true });
-const db = await openDatabase({ dataDir }); await seedCategories(db); await importLegacyJson(db); await seedDatabase(db);
+const db = await openDatabase({ dataDir }); await seedCategories(db); await importLegacyJson(db); await seedDatabase(db); await seedDemoCatalog(db);
 const server = http.createServer(async (req, res) => {
   try { if (!isAllowedOrigin(req.headers.origin)) return send(req, res, 403, { error: 'Bu ünvanın girişinə icazə yoxdur' }); if (req.method === 'OPTIONS') { res.writeHead(204, baseHeaders(req, { 'Access-Control-Allow-Headers': 'Content-Type, Authorization, Idempotency-Key, Stripe-Signature', 'Access-Control-Allow-Methods': 'GET, POST, PATCH, OPTIONS' })); return res.end(); } const url = new URL(req.url, publicUrl); if (url.pathname.startsWith('/api/')) return await api(db, req, res, url); return await serveFile(req, res, url.pathname); } catch (error) { const status = error instanceof ApiError ? error.status : 500; if (status >= 500) console.error(error); return send(req, res, status, { error: error.message || 'Server xətası', ...(error.code ? { code: error.code } : {}) }); }
 });
