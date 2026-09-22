@@ -33,20 +33,22 @@ const seeds = [
 ];
 
 const demoImages = [
-  'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=900&q=85',
-  'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85',
-  'https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=900&q=85',
   'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85',
   'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=85',
-  'https://images.unsplash.com/photo-1584917865442-0c8b3f0e95dd?auto=format&fit=crop&w=900&q=85',
-  'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85',
-  'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1506629905607-d405b7a30db5?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85',
 ];
 const demoCatalog = [
-  ['Zarka Demo', 'Bakı', [['Ağ gündəlik sneaker','Ayaqqabı',89,10,3],['Qara şəhər loaferi','Ayaqqabı',119,5,4],['Rəngli canvas sneaker','Ayaqqabı',75,11,3],['Linen rahat köynək','Geyim',45,12,0],['Saten köynək','Geyim',55,11,1],['Düz kəsim şalvar','Geyim',65,7,2],['Şəhər kəsimli şalvar','Geyim',59,9,1],['Yüngül bomber kurtka','Geyim',99,5,1],['Denim kurtka','Geyim',109,6,0],['Oversize jaket','Geyim',119,6,2]]],
-  ['Brunello Cucinelli Demo', 'Bakı', [['Dəri şəhər sneakeri','Ayaqqabı',165,6,3],['Süet klassik loafer','Ayaqqabı',189,4,4],['Açıq rəngli sneaker','Ayaqqabı',149,8,3],['Yumşaq pambıq köynək','Geyim',92,9,0],['Kətan zolaqlı köynək','Geyim',105,7,1],['Rahat yun şalvar','Geyim',138,6,2],['Klassik düz şalvar','Geyim',128,8,1],['Yüngül keçid kurtka','Geyim',219,4,1],['Teksturalı qısa kurtka','Geyim',235,3,0],['Klassik kəsim jaket','Geyim',279,4,2]]],
-  ['Atelierdefalco Demo', 'Bakı', [['Minimal ağ sneaker','Ayaqqabı',110,10,3],['Parlaq dərili loafer','Ayaqqabı',134,5,4],['Boz gündəlik sneaker','Ayaqqabı',98,9,3],['Düz formalı köynək','Geyim',62,11,0],['Yaxa detallı köynək','Geyim',69,10,1],['Geniş paçalı şalvar','Geyim',84,7,2],['Tünd düz şalvar','Geyim',78,9,1],['Qısa kəsimli kurtka','Geyim',142,5,1],['Yüngül denim kurtka','Geyim',155,5,0],['Tekdüyməli jaket','Geyim',169,6,2]]],
-  ['Maskolin Demo', 'Gəncə', [['İdman üslublu sneaker','Ayaqqabı',72,13,3],['Gündəlik dəri loafer','Ayaqqabı',96,7,4],['Kətan canvas sneaker','Ayaqqabı',68,12,3],['Rahat gündəlik köynək','Geyim',39,15,0],['Klassik yaxalı köynək','Geyim',49,12,1],['Elastik bel şalvar','Geyim',58,10,2],['Düz kəsim şalvar','Geyim',63,8,1],['Küləkkəsən kurtka','Geyim',88,7,1],['Denim gündəlik kurtka','Geyim',94,6,0],['Rahat formalı jaket','Geyim',112,7,2]]],
+  ['Zarka Demo', 'Bakı', [['Ağ gündəlik sneaker','Ayaqqabı',89,10,3],['Qara şəhər loaferi','Ayaqqabı',119,5,4],['Rəngli canvas sneaker','Ayaqqabı',75,11,5],['Linen rahat köynək','Geyim',45,12,0],['Saten köynək','Geyim',55,11,1],['Düz kəsim şalvar','Geyim',65,7,2],['Şəhər kəsimli şalvar','Geyim',59,9,6],['Yüngül bomber kurtka','Geyim',99,5,7],['Denim kurtka','Geyim',109,6,8],['Oversize jaket','Geyim',119,6,9]]],
+  ['Brunello Cucinelli Demo', 'Bakı', [['Dəri şəhər sneakeri','Ayaqqabı',165,6,3],['Süet klassik loafer','Ayaqqabı',189,4,4],['Açıq rəngli sneaker','Ayaqqabı',149,8,5],['Yumşaq pambıq köynək','Geyim',92,9,0],['Kətan zolaqlı köynək','Geyim',105,7,1],['Rahat yun şalvar','Geyim',138,6,2],['Klassik düz şalvar','Geyim',128,8,6],['Yüngül keçid kurtka','Geyim',219,4,7],['Teksturalı qısa kurtka','Geyim',235,3,8],['Klassik kəsim jaket','Geyim',279,4,9]]],
+  ['Atelierdefalco Demo', 'Bakı', [['Minimal ağ sneaker','Ayaqqabı',110,10,3],['Parlaq dərili loafer','Ayaqqabı',134,5,4],['Boz gündəlik sneaker','Ayaqqabı',98,9,5],['Düz formalı köynək','Geyim',62,11,0],['Yaxa detallı köynək','Geyim',69,10,1],['Geniş paçalı şalvar','Geyim',84,7,2],['Tünd düz şalvar','Geyim',78,9,6],['Qısa kəsimli kurtka','Geyim',142,5,7],['Yüngül denim kurtka','Geyim',155,5,8],['Tekdüyməli jaket','Geyim',169,6,9]]],
+  ['Maskolin Demo', 'Gəncə', [['İdman üslublu sneaker','Ayaqqabı',72,13,3],['Gündəlik dəri loafer','Ayaqqabı',96,7,4],['Kətan canvas sneaker','Ayaqqabı',68,12,5],['Rahat gündəlik köynək','Geyim',39,15,0],['Klassik yaxalı köynək','Geyim',49,12,1],['Elastik bel şalvar','Geyim',58,10,2],['Düz kəsim şalvar','Geyim',63,8,6],['Küləkkəsən kurtka','Geyim',88,7,7],['Denim gündəlik kurtka','Geyim',94,6,8],['Rahat formalı jaket','Geyim',112,7,9]]],
 ];
 
 function isAllowedOrigin(origin) { return !origin || !allowedOrigins.length || allowedOrigins.includes(origin); }
@@ -92,7 +94,7 @@ async function seedDemoCatalog(db) {
       const storeId = `demo_store_${hash(storeName).slice(0, 18)}`; const ownerId = `demo_owner_${hash(storeName).slice(0, 18)}`; const at = now();
       await tx.run('INSERT INTO users(id,identifier,identifier_type,role,status,profile,created_at) VALUES(?,?,?,?,?,?,?) ON CONFLICT(identifier) DO NOTHING', [ownerId, `${hash(storeName).slice(0, 18)}@demo.yerli.local`, 'email', 'buyer', 'active', '{}', at]);
       await tx.run('INSERT INTO stores(id,owner_id,name,city,phone,description,status,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO NOTHING', [storeId, ownerId, storeName, city, '+994000000000', 'Demo mağaza: məhsul, qiymət və stok məlumatları yalnız sınaq üçündür.', 'active', at, at]);
-      for (const [title, category, price, stock, imageIndex] of items) { const id = `demo_product_${hash(`${storeName}:${title}`).slice(0, 22)}`; const details = { subtype: category, material: 'Demo material', colors: ['Bej', 'Qara'], sizes: category === 'Ayaqqabı' ? ['38', '39', '40'] : ['S', 'M', 'L'], image: demoImages[imageIndex], badge: 'Demo', description: `${storeName} üçün nümayiş məhsulu. Satışa və real sifarişə aid deyil.` }; await tx.run('INSERT INTO products(id,store_id,title,category,price_minor,stock,status,details,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO NOTHING', [id, storeId, title, category, price * 100, stock, 'active', JSON.stringify(details), at, at]); }
+      for (const [title, category, price, stock, imageIndex] of items) { const id = `demo_product_${hash(`${storeName}:${title}`).slice(0, 22)}`; const details = { subtype: category, material: 'Demo material', colors: ['Bej', 'Qara'], sizes: category === 'Ayaqqabı' ? ['38', '39', '40'] : ['S', 'M', 'L'], image: demoImages[imageIndex], badge: 'Demo', description: `${storeName} üçün nümayiş məhsulu. Satışa və real sifarişə aid deyil.` }; await tx.run('INSERT INTO products(id,store_id,title,category,price_minor,stock,status,details,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET details=excluded.details, updated_at=excluded.updated_at', [id, storeId, title, category, price * 100, stock, 'active', JSON.stringify(details), at, at]); }
     }
   });
 }
