@@ -20,8 +20,8 @@ Frontend GitHub Pages-də, backend Render Free-də işləyir. Render Free 15 də
 - İdempotent sifariş yaratma: təkrar sorğu eyni sifarişə bağlanır.
 - Alıcı, mağaza sahibi və admin üçün server icazələri.
 - Admin paneli ilə mağaza/məhsul təsdiqi və rəddi; yalnız təsdiqlənənlər alıcı kataloqunda görünür.
-- Şəkil yükləməsi üçün ölçü, format və məzmun yoxlaması; şəkil təhlükəsiz WEBP formatına çevrilir.
-- Hər məhsul üçün 1–8 orijinal və emal olunmuş şəkil ayrıca saxlanılır; məhsul detalında şəkillər arasında keçid var.
+- Şəkil yükləməsi üçün ölçü və format yoxlaması; şəkil təhlükəsiz WEBP formatına çevrilir.
+- Hər məhsul üçün 1–8 şəkil saxlanılır; məhsul detalında şəkillər arasında keçid var.
 - Privacy, istifadə şərtləri, çatdırılma və qaytarma üçün ilkin modal mətnlər.
 - Stripe Checkout və imzalı webhook üçün hazır axın. Konfiqurasiya yoxdursa kart sifarişi yaranmır.
 

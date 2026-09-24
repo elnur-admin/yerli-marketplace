@@ -6,7 +6,7 @@ import { fail, uid } from './helpers.mjs';
 const enabled = name => process.env[name] === 'true';
 export const demoMode = process.env.NODE_ENV !== 'production' && enabled('DEMO_MODE');
 export const cardEnabled = () => enabled('ENABLE_STRIPE') && enabled('STRIPE_MERCHANT_CONFIRMED') && !!process.env.STRIPE_SECRET_KEY && !!process.env.STRIPE_WEBHOOK_SECRET && !!process.env.PUBLIC_URL;
-export function capabilities() { return { demoMode, otp: { email: !!(process.env.RESEND_API_KEY && process.env.RESEND_FROM), sms: !!(process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.TWILIO_FROM), demo: demoMode }, payments: { cash: process.env.ENABLE_CASH !== 'false', card: cardEnabled() }, uploads: true, backgroundRemoval: !!process.env.REMOVEBG_API_KEY }; }
+export function capabilities() { return { demoMode, otp: { email: !!(process.env.RESEND_API_KEY && process.env.RESEND_FROM), sms: !!(process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.TWILIO_FROM), demo: demoMode }, payments: { cash: process.env.ENABLE_CASH !== 'false', card: cardEnabled() }, uploads: true }; }
 async function providerFetch(url, options, errorMessage) { let response; try { response = await fetch(url, { ...options, signal: AbortSignal.timeout(15000) }); } catch { fail(503, errorMessage, 'PROVIDER_UNAVAILABLE'); } if (!response.ok) fail(503, errorMessage, 'PROVIDER_UNAVAILABLE'); return response; }
 export async function deliverOtp(identifier, code) {
   if (demoMode) return 'demo'; // Demo never contacts providers, even if credentials are inherited.
@@ -66,16 +66,10 @@ async function cleanImage(bytes) {
     return await input.rotate().resize(1600,1600,{fit:'inside',withoutEnlargement:true}).webp({quality:84}).toBuffer();
   } catch (error) { if (error.status) throw error; fail(400, 'Şəkil oxuna bilmədi. Başqa PNG, JPG və ya WEBP seç.'); }
 }
-export async function uploadImage({ dataUrl, removeBackground = false, uploadRoot }) {
+export async function uploadImage({ dataUrl, uploadRoot }) {
   const input = await cleanImage(decodeImage(dataUrl));
   const originalName = `${uid('image')}.webp`;
   fs.writeFileSync(path.join(uploadRoot, originalName), input, { flag: 'wx' });
   const originalUrl = `/media/${originalName}`;
-  if (!removeBackground) return { originalUrl, processedUrl: originalUrl, size: input.length, provider: 'storage', backgroundRemoved: false };
-  if (!process.env.REMOVEBG_API_KEY || demoMode) fail(503, 'Fon silmə xidməti aktiv deyil. Adi şəkil yükləməsindən istifadə et.', 'BACKGROUND_REMOVAL_NOT_CONFIGURED');
-  const form = new FormData(); form.append('image_file', new Blob([input], {type:'image/webp'}), 'product.webp'); form.append('size','auto');
-  const response = await providerFetch('https://api.remove.bg/v1.0/removebg', { method:'POST',headers:{'X-Api-Key':process.env.REMOVEBG_API_KEY},body:form }, 'Şəklin fonu silinə bilmədi');
-  const output = await cleanImage(Buffer.from(await response.arrayBuffer()));
-  const processedName = `${uid('image')}.webp`; fs.writeFileSync(path.join(uploadRoot,processedName),output,{flag:'wx'});
-  return { originalUrl, processedUrl:`/media/${processedName}`, size: output.length, provider:'remove.bg',backgroundRemoved:true };
+  return { originalUrl, processedUrl: originalUrl, size: input.length, provider: 'storage' };
 }
