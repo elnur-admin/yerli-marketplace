@@ -3,21 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#111c38" />
-    <meta name="description" content="Yerli — Azərbaycandakı mağazaların məhsullarını bir arada tap." />
-    <title>Yerli — Azərbaycanın mağazaları bir yerdə</title>
+    <meta name="theme-color" content="#10251d" />
+    <meta name="description" content="Trendaze — seçilmiş mağazaları və məhsulları bir yerdə kəşf et." />
+    <title>Trendaze — seç, bəyən, sifariş et</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=6" />
   </head>
   <body>
     <div class="app-shell">
       <header class="topbar">
-        <a class="brand" href="#catalog" aria-label="Yerli ana səhifə">
-          <span class="brand-mark">y</span>
-          <span>yerli</span>
+        <a class="brand" href="#catalog" aria-label="Trendaze ana səhifə">
+          <span class="brand-mark">t</span>
+          <span>trendaze</span>
         </a>
         <nav class="main-nav" aria-label="Əsas menyu">
           <a class="active" href="#catalog">Məhsullar</a>
@@ -35,9 +35,9 @@
       <main>
         <section class="hero" id="catalog">
           <div class="hero-copy">
-            <div class="eyebrow"><span class="live-dot"></span> Alış-veriş üçün 1,240+ yerli mağaza</div>
-            <h1>Azərbaycanda<br /><em>alış-veriş et.</em></h1>
-            <p>Mağazaları, məhsulları və qiymətləri bir yerdə kəşf et. Bəyəndiyini səbətə əlavə et və mağazadan sifariş ver.</p>
+            <div class="eyebrow"><span class="live-dot"></span> Seçilmiş mağazalar bir yerdə</div>
+            <h1>Tap. Seç.<br /><em>Özün ol.</em></h1>
+            <p>Geyimdən ev aksesuarına — sevdiyin məhsulu rahat tap, müqayisə et və bir neçə addımda sifariş ver.</p>
             <div class="search-box hero-search">
               <span class="search-symbol">⌕</span>
               <input id="search-input" type="search" placeholder="Məhsul, mağaza və ya marka axtar..." autocomplete="off" />
@@ -47,8 +47,8 @@
           </div>
           <div class="hero-art" aria-label="Seçilmiş məhsullar">
             <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
-            <div class="hero-card card-back"><img src="https://images.unsplash.com/photo-1467043237213-65f2da53396f?auto=format&fit=crop&w=900&q=85" alt="Yerli moda seçimi" /></div>
-            <div class="hero-card card-front"><img src="https://images.unsplash.com/photo-1708523842501-1619478cea1f?auto=format&fit=crop&w=900&q=85" alt="Denim geyim dəsti" /><div class="hero-card-label"><span>Həftənin seçimi</span><strong>Denim edit</strong></div></div>
+            <div class="hero-card card-back"><img src="https://images.unsplash.com/photo-1467043237213-65f2da53396f?auto=format&fit=crop&w=900&q=85" alt="Trendaze moda seçimi" /></div>
+            <div class="hero-card card-front"><img src="https://images.unsplash.com/photo-1708523842501-1619478cea1f?auto=format&fit=crop&w=900&q=85" alt="Denim geyim dəsti" /><div class="hero-card-label"><span>Bu həftə</span><strong>Şəhər stili</strong></div></div>
           </div>
         </section>
 
@@ -64,7 +64,7 @@
 
         <section class="catalog-section">
           <div class="section-heading">
-            <div><span class="eyebrow">Alıcı kataloqu</span><h2>Məhsullar və qiymətlər</h2></div>
+            <div><span class="eyebrow">Kəşf et</span><h2>Sənin üçün seçilənlər</h2></div>
             <div class="heading-actions"><span class="result-count" id="result-count">8 məhsul</span><button class="mobile-filter-btn" id="open-filters">☷ Filtrlər</button><label class="sort-control">Sırala <select id="sort-select"><option value="newest">Ən yeni</option><option value="low">Ən ucuz</option><option value="high">Ən bahalı</option></select></label></div>
           </div>
           <div class="catalog-layout">
@@ -81,10 +81,10 @@
           </div>
         </section>
 
-        <section class="store-strip" id="stores"><div class="store-section-head"><div><span class="eyebrow">Mağazalar</span><h2>Mağazaları və vitrinləri kəşf et</h2><p>Mağazanın səhifəsinə bax, məhsulları və qiymətləri müqayisə et.</p></div><button class="outline-btn" id="browse-stores">Hamısını göstər <span>↓</span></button></div><div class="stores-grid" id="stores-grid"></div></section>
+        <section class="store-strip" id="stores"><div class="store-section-head"><div><span class="eyebrow">Mağazalar</span><h2>Sevdiyin vitrinləri kəşf et</h2><p>Mağazalara bax, məhsulları müqayisə et və rahat seçim et.</p></div><button class="outline-btn" id="browse-stores">Hamısını göstər <span>↓</span></button></div><div class="stores-grid" id="stores-grid"></div></section>
       </main>
 
-      <footer><div class="brand footer-brand"><span class="brand-mark">y</span><span>yerli</span></div><span>Azərbaycandakı mağazalar, bir yerdə.</span><div class="footer-links"><a href="#catalog">Məhsullar</a><a href="#stores">Mağazalar</a><button data-legal="privacy">Məxfilik</button><button data-legal="terms">Şərtlər</button><button data-legal="delivery">Çatdırılma və qaytarma</button></div></footer>
+      <footer><div class="brand footer-brand"><span class="brand-mark">t</span><span>trendaze</span></div><span>Sevdiyin şeyi tapmaq daha rahatdır.</span><div class="footer-links"><a href="#catalog">Məhsullar</a><a href="#stores">Mağazalar</a><button data-legal="privacy">Məxfilik</button><button data-legal="terms">Şərtlər</button><button data-legal="delivery">Çatdırılma və qaytarma</button></div></footer>
     </div>
 
     <div class="modal-backdrop" id="modal-backdrop" hidden></div>
@@ -95,10 +95,10 @@
     <section class="modal seller-dashboard-modal" id="seller-dashboard-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="seller-dashboard"></div></section>
     <section class="modal auth-modal" id="admin-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="admin-content"></div></section>
     <section class="modal auth-modal" id="legal-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div id="legal-content"></div></section>
-    <section class="modal seller-modal" id="seller-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div class="seller-head"><div class="seller-step active" data-step-label="1"><b>1</b><span>Mağaza</span></div><div class="step-line"></div><div class="seller-step" data-step-label="2"><b>2</b><span>AI Studio</span></div><div class="step-line"></div><div class="seller-step" data-step-label="3"><b>3</b><span>Məhsul</span></div></div><div class="seller-content" id="seller-content"></div></section>
+    <section class="modal seller-modal" id="seller-modal" role="dialog" aria-modal="true" hidden><button class="modal-close" data-close-modal>×</button><div class="seller-head"><div class="seller-step active" data-step-label="1"><b>1</b><span>Mağaza</span></div><div class="step-line"></div><div class="seller-step" data-step-label="2"><b>2</b><span>Şəkillər</span></div><div class="step-line"></div><div class="seller-step" data-step-label="3"><b>3</b><span>Məhsul</span></div></div><div class="seller-content" id="seller-content"></div></section>
     <div class="toast" id="toast" role="status"></div>
   <script>window.YERLI_API_BASE = location.hostname === "elnur-admin.github.io" ? "https://yerli-api.onrender.com" : "";</script>
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=8"></script>
   </body>
 </html>
 
